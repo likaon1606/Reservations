@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  reservations:
+  build:
+    ports:
+      -"4000:4000"
+    links:
+      - nodeimage   
+    environment:
+      image: nodeimage
+      ports:
+        - "4000:4000"
+      environment: 
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=Malema01*
