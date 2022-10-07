@@ -1,15 +1,23 @@
-version: "3.9"
+version: "3.8"
+
 services:
-  reservations:
-  build:
+  postgres:
+    image: postgres
+    restart: always
     ports:
-      -"4000:4000"
-    links:
-      - nodeimage   
+      - "5432:5432"
     environment:
-      image: nodeimage
-      ports:
-        - "4000:4000"
-      environment: 
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=Malema01*
+      - DATA_HOST=127.0.0.1
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ariel.fuentesgarcia@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: "ariel"
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres  
